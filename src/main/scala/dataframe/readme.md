@@ -1,0 +1,8 @@
+通过dataframe和dataset实现电影点评系统
+
+
+dataframe表示二维表数据集红每一列的 名称和类型
+dataset是强类型的，dataset是lazy级别的，transformation级别的算子作用于dataset会得到一个新的dataset
+
+
+
