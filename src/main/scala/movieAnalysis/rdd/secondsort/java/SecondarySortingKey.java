@@ -1,4 +1,4 @@
-package movieAnalysis.secondsort.java;
+package movieAnalysis.rdd.secondsort.java;
 
 import scala.Serializable;
 import scala.math.Ordered;

@@ -1,8 +1,9 @@
-package movieAnalysis
+package movieAnalysis.rdd
 
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
+;
 
 object MoviePopularity {
 
@@ -47,5 +48,6 @@ object MoviePopularity {
    .take(10)
    .foreach(println)
 
+    spark.stop
   }
 }

@@ -1,0 +1,5 @@
+使用spark sql完成数据分析
+
+1.MovieGroupByGenderAndAge:
+使用dataFrame来完成统计某部电影【1193】观看者中男性、女性不同年龄段分别有多少人
+同时也是用了sparkSQL通过编写SQL语句来完成

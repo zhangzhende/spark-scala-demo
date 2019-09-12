@@ -1,9 +1,10 @@
-package movieAnalysis
+package movieAnalysis.rdd
 
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.SparkConf
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
+;
 
 object MovieUserAnalyzer {
   /**
@@ -65,6 +66,8 @@ object MovieUserAnalyzer {
     for (elem <- userInfomationForSpecificMovie.collect().take(10)) {
       println("userInfomationForSpecificMovie（用户id，(电影id,(（用户id，性别，年龄）,职业名）))：" + elem)
     }
+
+    spark.stop
   }
 
 }

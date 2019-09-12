@@ -1,10 +1,11 @@
-package movieAnalysis
+package movieAnalysis.rdd
 
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
 
 import scala.collection.immutable.HashSet
+;
 
 object MovieAgePreferTopK {
 
@@ -94,5 +95,6 @@ object MovieAgePreferTopK {
       .map(item => (movieIdAndNameMap.getOrElse(item._1, null), item._2)) //通过map从movieid拿moviename
       .foreach(println)
 
+    spark.stop
   }
 }

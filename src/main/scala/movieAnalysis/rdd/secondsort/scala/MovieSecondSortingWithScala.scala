@@ -4,7 +4,7 @@ import org.apache.log4j.{Level, Logger}
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
 
-class MovieSecondSortingWithScala {
+object MovieSecondSortingWithScala {
 
   /**
     *
@@ -29,9 +29,11 @@ class MovieSecondSortingWithScala {
 
     val pairWithSortKey=ratingsRDD.map(line=>{
       val splited=line.split("::")
-      (new ScalaSecondarySortKey(splited(3).toDouble,splited(2).toDouble))
+      (new ScalaSecondarySortKey(splited(3).toDouble,splited(2).toDouble),line)
     })
-
-
+    pairWithSortKey.sortByKey(false)
+      .map(item=>item._2)
+      .take(10)
+      .foreach(println)
   }
 }

@@ -1,4 +1,4 @@
-package movieAnalysis.secondsort.java;
+package movieAnalysis.rdd.secondsort.java;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
@@ -17,17 +17,19 @@ import java.util.List;
  * @Create 2019/9/12 14:33
  * @Version 1.0
  **/
-public class SecondSortingTest {
+public class MovieSecondSorting {
     public static void main(String[] args) {
+        String path = "D:\\scalaWorkingSpace\\data\\ml-1m\\ratings.dat";
         JavaSparkContext sc = new JavaSparkContext(new SparkConf().setMaster("local[*]").setAppName("SecondSortingTest"));
-        JavaRDD<String> lines = sc.textFile("D:\\scalaWorkingSpace\\spark-scala-demo\\src\\main\\scala\\movieAnalysis\\secondsort\\sortdata.txt");
+        JavaRDD<String> lines = sc.textFile(path);
 //        组装RDD
         JavaPairRDD<SecondarySortingKey, String> keyvalues = lines
                 .mapToPair(new PairFunction<String, SecondarySortingKey, String>() {
                     @Override
                     public Tuple2<SecondarySortingKey, String> call(String line) throws Exception {
-                        String[] splited = line.split("  ");
-                        SecondarySortingKey secondarySortingKey = new SecondarySortingKey(Integer.valueOf(splited[0]), Integer.valueOf(splited[1]));
+                        String[] splited = line.split("::");
+//                        时间戳和评分作为排序依据
+                        SecondarySortingKey secondarySortingKey = new SecondarySortingKey(Integer.valueOf(splited[3]), Integer.valueOf(splited[2]));
                         return new Tuple2<>(secondarySortingKey, line);
                     }
                 });
